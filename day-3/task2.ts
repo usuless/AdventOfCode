@@ -15,25 +15,23 @@ const regexFunc = (mul: string) => {
         if(numbers[i] === ',') {
             num1 = Number(numbers.slice(0, i))
             num2 = Number(numbers.slice(i + 1, numbers.length))
-            console.log(num1)
-            console.log(num2)
             score += (num1 * num2)
         }
     }
     console.log(score)
 }
 
-const doAndDontAddon = (TableOfRules:RegExpMatchArray) => {
-    for (let i = 0; i < TableOfRules.length; i++) {
-        if (TableOfRules[i] === "do()") {
-            console.log(TableOfRules[i])
+const doAndDontAddon = (tableWithInstructions:RegExpMatchArray) => {
+    for (let i = 0; i < tableWithInstructions.length; i++) {
+        if (tableWithInstructions[i] === "do()") {
+            console.log(tableWithInstructions[i])
             isGood = true
-        } else if (TableOfRules[i] === "don't()") {
-            console.log(TableOfRules[i])
+        } else if (tableWithInstructions[i] === "don't()") {
+            console.log(tableWithInstructions[i])
             isGood = false
         } else {
             if (isGood === true) {
-                regexFunc(TableOfRules[i])
+                regexFunc(tableWithInstructions[i])
             }
         } 
     }
@@ -50,4 +48,68 @@ const doAndDontAddon = (TableOfRules:RegExpMatchArray) => {
     doAndDontAddon(found)
 })
 
-// 44071268
+
+// deno
+
+
+/*
+
+// Deno
+
+let enabled = true;
+console.log(
+"Sum: ",
+(await Deno.readTextFile("input.txt"))
+.matchAll(/mul\((\d*),(\d*)\)|do\(\)|don\'t\(\)/gm)
+.reduce((acc, capture) => {
+  if (capture[0].startsWith("do()")) enabled = true;
+  if (capture[0].startsWith("don't()")) enabled = false;
+  if (capture[0].startsWith("mul(") && enabled)
+    acc += +capture[1] * +capture[2];
+
+  return acc;
+}, 0),
+);
+
+
+// RUST
+
+
+use regex::Regex;
+use std::fs;
+
+const INPUT_LOCATION: &str = "./input.txt";
+
+const ENABLE_INSTRUCTION: &str = "do()";
+const DISABLE_INSTRUCTION: &str = "don't()";
+const MULTIPLY_INSTRUCTION: &str = "mul(";
+
+fn main() {
+    let mut sum = 0;
+    let mut is_enabled = true;
+
+    let input = fs::read_to_string(INPUT_LOCATION).expect("No input file found");
+
+    let mul_regex = Regex::new(r"mul\((\d*),(\d*)\)|do\(\)|don\'t\(\)").expect("Regex issue");
+
+    for capture in mul_regex.captures_iter(&input) {
+        if capture[0].eq(ENABLE_INSTRUCTION) {
+            is_enabled = true;
+        }
+
+        if capture[0].eq(DISABLE_INSTRUCTION) {
+            is_enabled = false;
+        }
+
+        if capture[0].starts_with(MULTIPLY_INSTRUCTION) && is_enabled {
+            let num1 = &capture[1].parse::<i32>().expect("Number parse error");
+            let num2 = &capture[2].parse::<i32>().expect("Number parse error");
+
+            sum += num1 * num2;
+        }
+    }
+
+    println!("Sum of multiplications: {}", sum);
+}
+
+*/

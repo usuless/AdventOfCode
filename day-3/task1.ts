@@ -1,7 +1,6 @@
-import * as fs from 'fs';
+//  import * as fs from 'fs';
 
-const dataLocation: string = './day-3/data.txt'
-let computerData: string = ''
+const dataLocation: string = './data.txt'
 let score: number = 0
 const regex = /mul\((\d{1,3}),(\d{1,3})\)/g;
 
@@ -17,16 +16,17 @@ const regexFunc = (mul: string) => {
             score += (num1 * num2)
         }
     }
-    console.log(score)
 }
-    
-    // read file
-    fs.readFile(dataLocation, (err, data) => {
-        if (err) throw err;
-        
-    computerData = data.toString();
-    const found = computerData.match(regex)
+const computerData =  await Deno.readTextFile("./data.txt")
 
-    found?.forEach((mul) => regexFunc(mul))
-    
-})
+// read file
+// fs.readFile(dataLocation, (err, data) => {
+//     if (err) throw err;
+// const computerData = data.toString();
+
+const found = computerData.match(regex)
+
+found?.forEach((mul) => regexFunc(mul))
+
+console.log(score)
+// })

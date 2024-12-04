@@ -25,7 +25,6 @@ const isNumeSafeDoubleCheck = (num: number[]) => {
       return false
 }
 
-
 const numsChecker = (nums: number[][]): number => {
     return nums.filter(isNumSafe).length
 }
