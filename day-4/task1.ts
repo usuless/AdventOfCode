@@ -10,7 +10,7 @@ const lookHorizontallyRight = (text:string, letterIndex:number) => {
     }
 }
 
-const lookHorizontallyLeft = (text: string, letterIndex:number) => {
+const lookHorizontallyBackwards = (text: string, letterIndex:number) => {
         if (text.slice(letterIndex - 3, letterIndex + 1) === "SAMX") {
             wordCount++
         }
@@ -92,7 +92,7 @@ fs.readFile(dataLocation, (err,data) => {
                 lookHorizontallyRight(parsedWordList[array], letter)
             } 
             if (parsedWordList[array][letter] === "X" && parsedWordList[array][letter - 1] === "M") {
-                lookHorizontallyLeft(parsedWordList[array], letter)
+                lookHorizontallyBackwards(parsedWordList[array], letter)
             }
             if (array < (parsedWordList.length - 3) && parsedWordList[array][letter] === "X" && parsedWordList[array + 1][letter] === "M") {
                 lookVerticallyDown(parsedWordList, array, letter )

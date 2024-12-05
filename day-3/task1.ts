@@ -17,7 +17,7 @@ const regexFunc = (mul: string) => {
         }
     }
 }
-const computerData =  await Deno.readTextFile("./data.txt")
+const computerData =  await Deno.readTextFile(dataLocation)
 
 // read file
 // fs.readFile(dataLocation, (err, data) => {
