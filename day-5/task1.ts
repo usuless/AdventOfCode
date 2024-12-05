@@ -73,6 +73,7 @@ const middleNumberCase = (objectOfOrders: any, badArrayIdx: number[]) => {
     }
   }
   console.log(finalSumOfGood)
+  console.log(badArrayIdxNoDuplicates)
 }
 
 
