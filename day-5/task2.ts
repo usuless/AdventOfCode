@@ -13,7 +13,6 @@ let arrayOfRepaired: number[][] = []
 const objectOfRules: any = {}
 const objectOfOrders: any = {}
 
-/// @ts-ignore
 const changeToNumbers = (text: string) => {
   if (text === undefined) {
     return []
@@ -96,6 +95,9 @@ const restoreBadArrays = (ordersObject: any, rulesObject: any, indexList: number
                     }
                 })
                 
+            } 
+            for(let i = 0; i < 50; i ++) {
+              console.log("\n");
             }
             console.log(`Loading: ${i}/${Object.keys(ordersObject).length}`)
             arrayOfRepaired.push(badArray)
@@ -127,50 +129,3 @@ fs.readFile(dataLocation, (err,data) => {
     restoreBadArrays(objectOfOrders, objectOfRules, badArrayIdxNoDuplicates)
     quickAnswer(arrayOfRepaired)
     })
-/*
-
-*/
-
-    /*
-
-    biorąc przykład:
-    
-    47|53
-    
-    strona 47 musi być wydrukowana kiedykolwiek przed 53
-    
-    
-    Stworzę obiekt, w którym będe przetrzymywał zasady dla poszczególnych liczb.
-    
-    Biorąc pierwszy przykład:
-    
-    const orderList = 75,47,61,53,29
-    -------
-    
-    sprawdzimy, czy każda liczba po kolei jest na swoim odpowiednim miejscu. 
-  
-    iterując po "orderList" sprawdzamy, czy którakolwiek z liczb w orderList nie występuje
-    
-    przy indeksie w obiekcie z zasadami dla poszczególnych liczb. Jeżeli nie występuje,
-
-    to można ją drukować i usuwa się ją z orderList. Jeżeli występuje jakaś liczba z orderList,
-    
-    to zamienia się je miejscami
-
-    
-    '29': '13,',
-    '47': '53,13,61,29,',     
-    '53': '29,13,',
-    '61': '13,53,29,',        
-    '75': '29,53,47,61,13,',  
-    '97': '13,61,47,29,53,75,'
-    
-    
-    Co tutaj robisz? xD
-    Dobra, odpalam 
-    Gotowy? Pomachaj kursorem na tak xD
-
-    Ogólnie przenosiłem z tatą trampoline, więc musiałem zniknąć
-
-    ale tak sobie czytałem dokumentacje jak wr
-    */
