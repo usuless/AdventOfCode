@@ -25,7 +25,6 @@ const navigation = (map: string[], guardVertLocation: number, guardHorLocation: 
         if(direction === 0 && guardVertLocation !== undefined) {
             for(let index = guardVertLocation; index >= 0; index--) {
                 if(map[index][guardHorLocation] === "#") {
-                    findPossibleInfLoop(map, [guardVertLocation, guardHorLocation], direction)
                     direction++
                     guardVertLocation = index + 1
                     index = 0
@@ -40,7 +39,6 @@ const navigation = (map: string[], guardVertLocation: number, guardHorLocation: 
         if(direction === 1 && guardHorLocation !== undefined) {
             for(let index = guardHorLocation; index < map[guardHorLocation].length; index++) {
                 if(map[guardVertLocation][index] === "#") {
-                    findPossibleInfLoop(map, [guardVertLocation, guardHorLocation], direction)
                     direction++
                     guardHorLocation = index - 1
                     index = map.length
@@ -55,7 +53,6 @@ const navigation = (map: string[], guardVertLocation: number, guardHorLocation: 
         if(direction === 2 && guardVertLocation !== undefined) {
             for(let index = guardVertLocation; index < map.length; index++) {
                 if(map[index][guardHorLocation] === "#") {
-                    findPossibleInfLoop(map, [guardVertLocation, guardHorLocation], direction)
                     direction++
                     guardVertLocation = index - 1
                     index = map.length
@@ -70,7 +67,6 @@ const navigation = (map: string[], guardVertLocation: number, guardHorLocation: 
         if(direction === 3 && guardHorLocation !== undefined) {
             for(let index = guardHorLocation; index >= 0; index--) {
                 if(map[guardVertLocation][index] === "#") {
-                    findPossibleInfLoop(map, [guardVertLocation, guardHorLocation], direction)
                     direction = 0
                     guardHorLocation = index + 1
                     index = 0
@@ -86,13 +82,6 @@ const navigation = (map: string[], guardVertLocation: number, guardHorLocation: 
     }
     console.log(howManyMarks)
 }
-
-const findPossibleInfLoop = (map:string[], hashLocation:number[], direction: number) => {
-    if(direction===0) {
-
-    }
-}
-
 
 const xMarking = (map:string[], vert:number, hor:number) => {
     let string = map[vert]
