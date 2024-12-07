@@ -163,8 +163,9 @@ fs.readFile(dataLocation, (err, data) => {
 
     skoro pozycja guarda to 6,3
 
-    jeżeli 7,(szukana) od arr[7].slice(3, arr[7].length).includes
-    i
+    JEŻELI GUARD IDZIE W GÓRE
+
+    jeżeli 7,(szukana) od arr[7].slice(3, arr[7].length).includes("#")
     for (let i = 6; i >= 0; i++) {
         if (arr[i][3] === "#" ) {
             let ostatniPunkt = arr[i + 1].slice(3, arr[i].length)
@@ -176,5 +177,14 @@ fs.readFile(dataLocation, (err, data) => {
         }
     }
 
+    JEŻELI GUARD IDZIE W PRAWO
+
+    guard ma teraz 1,3
+
+     for (let i = lokalizacjaWertykalna; i < arr.length; i++) {
+     if( arr[i][3] === "#" {
+     
+     })
+    }
 
 */
