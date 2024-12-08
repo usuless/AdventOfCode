@@ -14,13 +14,32 @@ let counter = ""
 }
 
 const counterChanger = (counter:string) => {
+    console.log(counter)
 let counterArr = []
 let CounterForNow = ''
 for(let i = 0; i < counter.length; i++) {
     counterArr.push(counter[i])
 }
 
+console.log(counterArr.length)
+for(let index = counterArr.length - 1; index >= 0; index--) {
+    if(counterArr[index] === "0" && !counterArr.slice(index, counterArr.length).includes("0")) {
+        counterArr[index] = "1"
+        let parseCounter = counterArr.splice(index, counterArr.length)
+        for(let i = 0; i > parseCounter.length - 1; index++) {
+            counterArr.push("0")
+        }
+    } else if(counterArr[index] === "0") {
+        counterArr[index] = "1"
+        break
+    }
+}
+
 console.log(counterArr)
+
+for(let finalIndex = counterArr.length - 1; finalIndex >= 0; finalIndex--) [
+    CounterForNow += counterArr[finalIndex]
+]
 
 return CounterForNow
 }
@@ -64,7 +83,8 @@ fs.readFile(dataLocation, (err,data) => {
 
 let test = counterMaker([1,2,3,4])
 console.log(test)
-// test = counterChanger(test)
+test = counterChanger(test)
+test = counterChanger(test)
 // console.log(test)
 // test = counterChanger(test)
 // console.log(test)
