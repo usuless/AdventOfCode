@@ -49,6 +49,7 @@ fs.readFile(dataLocation, (err, data) => {
 
     line = data.toString()
     makeALine(line)
+    console.log(lineAfter)
     lineSorter()
     sumAll(lineAfter)
 })
