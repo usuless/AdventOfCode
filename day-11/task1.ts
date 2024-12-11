@@ -14,27 +14,30 @@ fs.readFile(dataLocation, (err, data) => {
 
     stones = earlyData.split(/\s/g).map(Number)
     console.log(stones)
+    let stonesCopy: number[] = []
         for(let i = 0; i < stones.length; i++) {
-            if(i === 0) {
-                stones[i] = 1
+            if(stones[i] === 0) {
+                stonesCopy[idx] = 
+                idx++
+            console.log("to jest element: " + stonesCopy[i])
             } else if(stones[i].toString().length % 2 === 0) {
                 let howManyDigits = stones[i].toString().length / 2
                 let eString1 = stones[i].toString().slice(0,howManyDigits)
                 let eString2 = stones[i].toString().slice(howManyDigits, stones[i].toString().length)
-                let stones1 = stones.slice(0, i)
-                let stones2 = stones.slice(i + 1, stones.length)
-                stones = stones1
-                stones.push(Number(eString1))
-                stones.push(Number(eString2))
-                stones2.forEach((stone) => {
-                stones.push(stone)
-                i++
-                })
+                stonesCopy.push(Number(eString1))
+                stonesCopy.push(Number(eString2))
+            console.log("to jest element: " + stonesCopy[i])
+            idx++
+            idx++
             } else {
-                stones[i] = i * 2024
+                stonesCopy[idx] = stones[i] * 2024
+                console.log("to jest element: " + stonesCopy[i])
+                idx++
             }
+            console.log(i)
+            console.log(stones.length)
         }
-        
 
     console.log(stones)
+    console.log(stonesCopy)
 })
