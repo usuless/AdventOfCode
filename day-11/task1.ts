@@ -5,17 +5,13 @@ let stones: number[]
 let stonesCopy: number[] = []
 let idx = 0
 
-const elementHandler = (element: number) => {
-
-}
-
 fs.readFile(dataLocation, (err, data) => {
     if (err) throw err;
     let earlyData = data.toString()
 
     stones = earlyData.split(/\s/g).map(Number)
     console.log(stones)
-    for( let index = 0; index < 75; index++) {
+    for( let index = 0; index < 25; index++) {
         for(let i = 0; i < stones.length; i++) {
             if(stones[i] === 0) {
                 stonesCopy[idx] = 1
