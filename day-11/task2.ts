@@ -10,7 +10,7 @@ const stoneToObj = (stone: number) => {
 
 const isUndefinedCheck = (e: string, v: number) => {
   if (Obj[e] === undefined) {
-    Obj[e] = 1;
+    Obj[e] = v;
   } else {
     Obj[e] += v;
   }
@@ -24,7 +24,7 @@ fs.readFile(dataLocation, (err, data) => {
     stoneToObj(stone);
   });
   // liczba mrugnięć
-  for (let i = 1; i <= 75; i++) {
+  for (let i = 1; i <= 4; i++) {
     // pojedyncze mrugnięcie
     for (let [key, value] of Object.entries(Obj)) {
       if (key === "0" && value !== 0) {
@@ -36,9 +36,11 @@ fs.readFile(dataLocation, (err, data) => {
         let secondHalf = key.slice(howManyDigits, key.length);
         let hasMoreThanZeroes = /[1-9]/.test(secondHalf);
         if (hasMoreThanZeroes 
-            // && secondHalf[0] == "0"
+            && secondHalf[0] === "0"
         ) {
+          console.log("przed: " + secondHalf)
           secondHalf = secondHalf.replace(/^0+/, "");
+          console.log(secondHalf)
         } else {
           secondHalf = "0";
         }
