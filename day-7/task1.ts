@@ -6,65 +6,81 @@ const dataLocation = "day-7/data.txt"
 let totalScore: number = 0
 
 const counterMaker = (Numbers: number[]) => {
-let counter = ""
+let counter = []
     for(let i = 0; i < Numbers.length - 1; i++) {
-        counter += ("0")
+        counter.push(0)
     }
     return counter
 }
-
-const counterChanger = (counter:string) => {
-    console.log(counter)
-let counterArr = []
-let CounterForNow = ''
-for(let i = 0; i < counter.length; i++) {
-    counterArr.push(counter[i])
-}
-
-console.log(counterArr.length)
-for(let index = counterArr.length - 1; index >= 0; index--) {
-    if(counterArr[index] === "0" && !counterArr.slice(index, counterArr.length).includes("0")) {
-        counterArr[index] = "1"
-        let parseCounter = counterArr.splice(index, counterArr.length)
-        for(let i = 0; i > parseCounter.length - 1; index++) {
-            counterArr.push("0")
-        }
-    } else if(counterArr[index] === "0") {
-        counterArr[index] = "1"
-        break
+let iter = 0
+const counterChanger = (counter:number[]) => {
+    let counterArr = []
+    for(let i = 0; i < counter.length; i++) {
+        counterArr.push(counter[i])
     }
+    for (let index = counterArr.length - 1; index >= 0; index--) {
+        if(counterArr[index] === 2) {
+            continue
+        }  else {
+            counterArr[index] ++
+            if(!counterArr.slice(index + 1, counterArr.length).includes(0 || 1)) {
+                let slice = counterArr.splice(index + 1, counterArr.length)
+                for(let i = 0; i < slice.length; i++) {
+                    counterArr.push(0)
+                }
+            }
+            break
+        }
+    }
+return counterArr
 }
 
-console.log(counterArr)
-
-for(let finalIndex = counterArr.length - 1; finalIndex >= 0; finalIndex--) [
-    CounterForNow += counterArr[finalIndex]
-]
-
-return CounterForNow
+const numMerge = (num1: number, num2:number) => {
+    let numString = String(num1) + String(num2)
+    return Number(numString)
 }
 
 
 const numChecker = (Numbers: number[], Sum: number) => {
-let counter = counterMaker(Numbers)
-let isFound = false
-let sumCheck: number = 0;
-while (counter.includes("0")) {
-for (let i = 0; i < Numbers.length - 1; i++) {
-    if (counter[i] === "0") {
-        sumCheck += (Numbers[i] + Numbers[i + 1])
+    let counter = counterMaker(Numbers)
+    let isFound = false
+    let sumCheck: number = 0;
+    while (!isFound) {
+        for (let i = 0; i < Numbers.length - 1; i++) {
+            if( i === 0 ) {
+                if (counter[i] === 0) {
+                    sumCheck = (Numbers[i] + Numbers[i + 1])
+                } else if (counter[i] === 1) {
+                    sumCheck = numMerge(Numbers[i], Numbers[i + 1])
+                } else {
+                    sumCheck = (Numbers[i] * Numbers[i + 1])
+                }
+            } else {
+                if (counter[i] === 0) {
+                    sumCheck += Numbers[i + 1]
+                } else if (counter[i] === 1) {
+                    sumCheck = numMerge(sumCheck, Numbers[i + 1])
+                } else {
+                    sumCheck = (sumCheck * Numbers[i + 1])
+                }
+            }
+        }
+
+        
+        if(!counter.includes(0) && !counter.includes(1) && !isFound) {
+            isFound = true
+        }
+        if(sumCheck != Sum) {
+            counter = counterChanger(counter)
+            sumCheck = 0
         } else {
-        sumCheck += (Numbers[i] * Numbers[i + 1])
+            console.log("znalezione")
+            console.log(Sum)
+            totalScore += Sum
+            sumCheck = 0
+            isFound = true
+        }
     }
-}
-if(sumCheck != Sum) {
-    counter = counterChanger(counter)
-    sumCheck = 0
-} else {
-totalScore += Sum
-sumCheck = 0
-counter = "1"
-}}
 }
 
 
@@ -77,35 +93,15 @@ fs.readFile(dataLocation, (err,data) => {
     calibrationElements.forEach((element) => {
         let Sum = Number(element.slice(0, element.indexOf(":")))
         let Numbers = element.slice(element.indexOf(":") + 2, element.length).split(' ').map(Number)
-        // numChecker(Numbers, Sum)
+        numChecker(Numbers, Sum)
     })
+    console.log(totalScore)
 })
 
-let test = counterMaker([1,2,3,4])
-console.log(test)
-test = counterChanger(test)
-test = counterChanger(test)
-// console.log(test)
-// test = counterChanger(test)
-// console.log(test)
-// test = counterChanger(test)
-// console.log(test)
-// test = counterChanger(test)
-// console.log(test)
-// test = counterChanger(test)
-// console.log(test)
-// test = counterChanger(test)
-// console.log(test)
-// test = counterChanger(test)
-// console.log(test)
+/*
 
-    /*
-    1. oczytanie pliku
-    2. parse data
-    3. stworzenie wszystkich kombinacji
-    4. sprawdzenie kazdej kombinacji na danych
-    5. dodanie sumy wszyskich danych spelniajacych warunek
-    6. console.log(suma)
+000 001 010
+011 100 101
+110 111
 
-    jeżeli linijka ma dwa miejsca dla operatora (++) (+*) (**) (*+)
 */
