@@ -12,7 +12,6 @@ let counter = []
     }
     return counter
 }
-let iter = 0
 const counterChanger = (counter:number[]) => {
     let counterArr = []
     for(let i = 0; i < counter.length; i++) {
@@ -66,18 +65,14 @@ const numChecker = (Numbers: number[], Sum: number) => {
             }
         }
 
-        
+
         if(!counter.includes(0) && !counter.includes(1) && !isFound) {
             isFound = true
         }
         if(sumCheck != Sum) {
             counter = counterChanger(counter)
-            sumCheck = 0
         } else {
-            console.log("znalezione")
-            console.log(Sum)
             totalScore += Sum
-            sumCheck = 0
             isFound = true
         }
     }
@@ -97,11 +92,3 @@ fs.readFile(dataLocation, (err,data) => {
     })
     console.log(totalScore)
 })
-
-/*
-
-000 001 010
-011 100 101
-110 111
-
-*/
