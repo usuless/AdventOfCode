@@ -51,10 +51,6 @@ const pathFinder = (map: number[][], Y: number, X: number, num: number, points: 
   }
 }
 
-const removeDuplicates = (arr: number[][]) => {
-        return arr.filter((item, index) => arr.indexOf(item) === index);
-    }
-
 const roadFinder = (zeros: number[][]) => {
   zeros.forEach((zero) => {
     let points: number[][] = []
