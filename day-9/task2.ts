@@ -31,6 +31,7 @@ const lineSorter = (lineAfter: any[]) => {
 }
 
 const blocksSorter = () => {
+    console.log(blocksList)
     for(let i = 0; i < blocksList.length; i++) {
         if(blocksList[i][0] === ".") {
             emptyBlocks.push(blocksList[i])
@@ -59,7 +60,6 @@ const sumAll = (line: any[]) => {
             sum += tempSum
         }
     }
-    console.log(sum)
 }
 
 
@@ -71,8 +71,5 @@ fs.readFile(dataLocation, (err, data) => {
     blocksDetector()
     blocksSorter()
     lineAfter = lineSorter(lineAfter)
-    // sumAll(lineAfter)
-    console.log(lineAfter)
-    console.log(fileIndex)
-    console.log(emptyBlocks)
+    sumAll(lineAfter)
 })
