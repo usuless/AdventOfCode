@@ -44,24 +44,16 @@ while (counter.includes("0")) {
 for (let i = 0; i < Numbers.length - 1; i++) {
     if (counter[i] === "0") {
         sumCheck += (Numbers[i] + Numbers[i + 1])
-        // console.log(Numbers[i], Numbers[i + 1])
-        // console.log("dodaje")
         } else {
         sumCheck += (Numbers[i] * Numbers[i + 1])
-        // console.log(Numbers[i], Numbers[i + 1])
-        // console.log("mnoży")
     }
 }
 if(sumCheck != Sum) {
-    // console.log(counter)
     counter = counterChanger(counter)
-    // console.log("To jest counter: " + counter)
-    // console.log(sumCheck)
     sumCheck = 0
 } else {
 totalScore += Sum
 sumCheck = 0
-// console.log("dobry wynik")
 counter = "1"
 }}
 }
@@ -78,13 +70,5 @@ fs.readFile(dataLocation, (err,data) => {
         let Numbers = element.slice(element.indexOf(":") + 2, element.length).split(' ').map(Number)
         numChecker(Numbers, Sum)
     })
+    console.log(totalScore)
 })
-
-    /*
-    1. oczytanie pliku
-    2. parse data
-    3. stworzenie wszystkich kombinacji
-    4. sprawdzenie kazdej kombinacji na danych
-    5. dodanie sumy wszyskich danych spelniajacych warunek
-    6. console.log(suma)
-*/
