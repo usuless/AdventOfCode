@@ -17,21 +17,25 @@ fs.readFile(dataLocation, (err, data) => {
   const input = data.toString().split("\r\n");
   input.forEach((record) => {
     if (record.includes("AND")) {
-      console.log(1);
+      // console.log(1);
     } else if (record.includes("NOT")) {
-      console.log(2);
+      // console.log(2);
     } else if (record.includes("OR")) {
-      console.log(3);
+      // console.log(3);
     } else if (record.includes("RSHIFT")) {
-      console.log(4);
+      // console.log(4);
     } else if (record.includes("LSHIFT")) {
-      console.log(5);
+      // console.log(5);
     } else {
-      console.log(record);
-      const match = record.match(/->\s*(.*)/);
-      //@ts-ignore
-      wires[match[1].trim()] = Number(record.match(/^.*?(?=->)/)[0]);
-      console.log(match);
+      const match = record.match(/^(\d+)\s*->\s*([a-z]+)/);
+
+      if (match) {
+        const wireName = match[2];
+
+        const wireValue = parseInt(match[1], 10);
+
+        wires[wireName] = wireValue;
+      }
     }
   });
   console.log(wires);
