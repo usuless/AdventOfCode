@@ -13,6 +13,7 @@ let total = 0;
 
 fs.readFile(dataLocation, (err, data) => {
   if (err) throw err;
+  const start = performance.now();
   const input = data.toString().split("\r\n");
   input.forEach((line) => {
     for (let index = 0; index < line.length; index++) {
@@ -38,5 +39,9 @@ fs.readFile(dataLocation, (err, data) => {
     firstBattery = { batteryIndex: -1, batteryPower: -1 };
     lastBattery = { batteryIndex: -1, batteryPower: -1 };
   });
+  const end = performance.now();
+  const duration = end - start;
+  console.log(`Time: ${duration.toFixed(2)}ms`);
+
   console.log(total);
 });

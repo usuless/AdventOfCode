@@ -5,6 +5,7 @@ let test = 0;
 
 fs.readFile(dataLocation, (err, data) => {
   if (err) throw err;
+  const start = performance.now();
   const input = data.toString().split(",");
   input.forEach((val) => {
     const [firstNum, lastNum] = val.split("-");
@@ -18,5 +19,9 @@ fs.readFile(dataLocation, (err, data) => {
       }
     }
   });
+  const end = performance.now();
+  const duration = end - start;
+
+  console.log(`Time: ${duration.toFixed(2)}ms`);
   console.log(test);
 });
