@@ -7,12 +7,17 @@ let total = 0;
 
 fs.readFile(dataLocation, (err, data) => {
   if (err) throw err;
+  const start = performance.now();
   const input = data.toString().split("\r\n");
 
   input.forEach((line) => {
     total += parseLine(line);
   });
   console.log(total);
+  const end = performance.now();
+  const duration = end - start;
+
+  console.log(`Time: ${duration.toFixed(2)}ms`);
 });
 
 /*

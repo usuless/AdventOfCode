@@ -19,14 +19,12 @@ fs.readFile(dataLocation, (err, data) => {
   const numRows = allNums[0].length;
   const numCols = allNums.length;
 
-  const goodArr: string[] = [];
+  const goodArr: string[][] = [];
 
   for (let i = 0; i < numRows; i++) {
-    //@ts-ignore
     goodArr[i] = [];
 
     for (let j = 0; j < numCols; j++) {
-      //@ts-ignore
       goodArr[i][j] = allNums[j][i];
     }
   }
