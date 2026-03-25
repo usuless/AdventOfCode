@@ -11,6 +11,6 @@
     "node-modules": "^1.0.1"
   },
   "scripts": {
-    "dev": "nodemon --exec ts-node ./2023/d-2/task1.ts"
+    "dev": "nodemon --exec ts-node ./2023/d-3/task1.ts"
   }
 }

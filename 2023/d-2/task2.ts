@@ -2,10 +2,6 @@ import * as fs from "fs";
 
 let total = 0;
 
-const redC = 12;
-const greenC = 13;
-const blueC = 14;
-
 const dataLocation = "2023/d-2/data.txt";
 
 fs.readFile(dataLocation, (err, data) => {
@@ -14,9 +10,9 @@ fs.readFile(dataLocation, (err, data) => {
   let splitRecords = records.split("\r\n");
   const start = performance.now();
   for (let i = 0; i < splitRecords.length; i++) {
-    let isValid = true;
-    let wynik = splitRecords[i].split(":");
-    let gameNum = Number(wynik[0].replace("Game ", ""));
+    let redC = 0;
+    let greenC = 0;
+    let blueC = 0;
     let throws = splitRecords[i].split(":");
     const rounds = throws[1].split(";");
     for (let y = 0; y < rounds.length; y++) {
@@ -24,19 +20,17 @@ fs.readFile(dataLocation, (err, data) => {
       round.forEach((ball) => {
         const dec = ball.trim().split(" ");
         if (dec[1] == "blue" && Number(dec[0]) > blueC) {
-          isValid = false;
+          blueC = Number(dec[0]);
         }
         if (dec[1] == "red" && Number(dec[0]) > redC) {
-          isValid = false;
+          redC = Number(dec[0]);
         }
         if (dec[1] == "green" && Number(dec[0]) > greenC) {
-          isValid = false;
+          greenC = Number(dec[0]);
         }
       });
     }
-    if (isValid) {
-      total += gameNum;
-    }
+    total += redC * greenC * blueC;
   }
   console.log(total);
   const end = performance.now();
